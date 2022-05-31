@@ -10,3 +10,8 @@ body {
 .App {
   text-align: center;
 }
+iframe{
+  margin: 0 auto;
+  height: 520px;
+  width: 90%;
+}
