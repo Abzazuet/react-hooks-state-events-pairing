@@ -1,10 +1,12 @@
 import video from "../data/video.js";
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header";
 import Comments from "./Comments";
+import Votes from "./Votes"
 function App() {
-  console.log("He re's your data:", video);
-  
+  const [likes, setLikes] = useState(video.upvotes);
+  const [dislikes, setDisLikes] = useState(video.downvotes);
+  const [showComments, setShowComments]=useState(true);
   return (
     <div className="App">
       <iframe
@@ -12,9 +14,10 @@ function App() {
         frameBorder="0"
         title="Thinking in React"
       />
-      <Header title={video.title} views={video.views} date={video.createdAt} likes={video.upvotes} dislikes={video.downvotes} />
-      <button>Hide comments</button>
-      <Comments comments={video.comments} />
+      <Header title={video.title} views={video.views} date={video.createdAt}  />
+      <Votes likes={likes} dislikes={dislikes} setLikes={setLikes} setDisLikes={setDisLikes} setComments={setShowComments} showComments= {showComments}/>
+      {showComments ? <Comments comments={video.comments} /> : " "}
+      
     </div>
   );
 }
